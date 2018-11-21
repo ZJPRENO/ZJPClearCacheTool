@@ -62,12 +62,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.clear()
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+	// MARK: - 添加标记1
+	// FIXME: 添加标记2
+	/* FIXME: 添加标记2 */
+
+	// MARK: - 添加标记3
+	/* TODO: 添加标记6 */
     func clear()->Void {
         
         let isOk = ZJPClearCache.removeCache()
         if isOk {
             print("清除缓存成功")
-            self.present(, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+//            self.present(, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
         }else{
             print("清除缓存失败")
         }
