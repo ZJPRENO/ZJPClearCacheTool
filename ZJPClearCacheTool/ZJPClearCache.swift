@@ -27,6 +27,7 @@ class ZJPClearCache: NSObject {
         /* 文件数组 */
         let filesArry:[String] = fileManager.subpaths(atPath: cachePath)!
         //print("文件数:\(filesArry.count)")
+		
         /* 遍历文件路径数组 */
         for subpaths in filesArry{
             /* 文件路径 */
@@ -46,7 +47,7 @@ class ZJPClearCache: NSObject {
                 
             }else{
                 messageInfo = "缓存已经清空"
-                flag = false
+                flag = true
             }
         }
         print(messageInfo)

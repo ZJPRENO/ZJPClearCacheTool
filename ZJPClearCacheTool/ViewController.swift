@@ -9,14 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
+
+	//获取缓存路径
     let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory,.userDomainMask, true).first!
-    /*文件管理*/
-    let fileManager = FileManager.default
-    
+
     lazy var tb:UITableView = {
         let tb = UITableView (frame: self.view.bounds, style: UITableViewStyle.plain)
-        self.view.addSubview(tb)
         tb.delegate = self
         tb.dataSource = self
         return tb
@@ -29,11 +27,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tb.rowHeight = 20
+        tb.rowHeight = 50
         tb.sectionHeaderHeight = 50
         tb.tableHeaderView = UILabel()
         dataArry = ["d"]
-        //self.view.addSubview(tb)
+        self.view.addSubview(tb)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -48,12 +46,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         var cell = tableView.dequeueReusableCell(withIdentifier: "id")
         if cell == nil {
-            cell  = UITableViewCell(style: .default, reuseIdentifier: "id")
+            cell  = UITableViewCell(style: .value1, reuseIdentifier: "id")
         }
-        cell?.backgroundColor = UIColor.gray
-        cell?.textLabel?.text = ZJPClearCache.getCacheSizeWithFilesPath(filesPath: cachePath)
+        cell?.textLabel?.text = "清除缓存"
         cell?.textLabel?.textAlignment = .right
-        //cell?.textLabel?.text = "清除缓存"
+		  cell?.detailTextLabel?.text = ZJPClearCache.getCacheSizeWithFilesPath(filesPath: cachePath)
         return cell!
         
     }
@@ -62,18 +59,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.clear()
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
-	// MARK: - 添加标记1
-	// FIXME: 添加标记2
-	/* FIXME: 添加标记2 */
 
-	// MARK: - 添加标记3
-	/* TODO: 添加标记6 */
     func clear()->Void {
         
         let isOk = ZJPClearCache.removeCache()
         if isOk {
             print("清除缓存成功")
-//            self.present(, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
         }else{
             print("清除缓存失败")
         }
